@@ -1,6 +1,7 @@
 $(document).ready(function(){
         var linkedList = new DLL.DoublyLinkedList();
         var articles = $("article");
+
         $.each(articles, function(index, value){
              linkedList.append(articles[index]);
             $(articles[index]).hide();
