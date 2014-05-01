@@ -50,4 +50,9 @@ aside {
         width: 100%;
     }
 
+    aside {
+        float: none;
+        width: 100%;
+    }
+
 }
