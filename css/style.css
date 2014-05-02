@@ -28,6 +28,7 @@ article {
     margin-right: 5%;
     float: left;
     text-align: justify;
+    position: absolute;
 }
 
 article img{

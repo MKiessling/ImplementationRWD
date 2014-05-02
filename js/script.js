@@ -3,6 +3,7 @@ $(document).ready(function () {
     var articles = $("article");
     var isSmall, isBig = false;
     var listener = null;
+    var block = false;
 
     /* attach EventListener to window to monitor changes in width */
     window.addEventListener('resize', function () {
@@ -24,7 +25,7 @@ $(document).ready(function () {
 
         window.removeEventListener('keyup', listener, false);
 
-    }
+    };
 
     /* triggers if window is small enough for mobile version */
     var small = function () {
@@ -41,39 +42,64 @@ $(document).ready(function () {
 
         listener = function (keyEvent) {
             /* Right-Arrow */
-            if (keyEvent.keyCode === 39) {
-                $(current.data).find("section").hide();
-                $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
-                if (current.next == null) {
-                    current = linkedList.head();
-                } else {
-                    current = current.next;
-                }
-
-                $(current.data).effect('slide', {direction: 'right', mode: 'show', distance: '100%'}, 1000);
-
+            if (keyEvent.keyCode === 39 && block === false) {
+                slideRight();
             }
             /* Left-Arrow */
-            if (keyEvent.keyCode === 37) {
-                $(current.data).find("section").hide();
-                $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
-                if (current.prev == null) {
-                    current = linkedList.tail();
-                } else {
-                    current = current.prev;
-                }
-                $(current.data).effect('slide', {direction: 'left', mode: 'show', distance: '100%'}, 1000);
+            if (keyEvent.keyCode === 37 && block === false) {
+                slideLeft();
             }
-
             /* Up-Arrow */
-            if(keyEvent.which === 38){
-                $(current.data).find("section").slideUp();
+            if(keyEvent.which === 38 && block === false){
+                slideUp();
+            }
+            /* Down-Arrow */
+            if(keyEvent.which === 40 && block === false){
+                slideDown();
+            }
+        };
+
+        var slideRight = function() {
+            block = true;
+            $(current.data).find("section").hide();
+            $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
+            if (current.next == null) {
+                current = linkedList.head();
+            } else {
+                current = current.next;
             }
 
-            /* Down-Arrow */
-            if(keyEvent.which === 40){
-                $(current.data).find("section").slideDown();
+            $(current.data).effect('slide', {direction: 'right', mode: 'show', distance: '100%'}, 1000, function () {
+                block = false;
+            });
+        };
+
+        var slideLeft = function() {
+            block = true;
+            $(current.data).find("section").hide();
+            $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
+            if (current.prev == null) {
+                current = linkedList.tail();
+            } else {
+                current = current.prev;
             }
+            $(current.data).effect('slide', {direction: 'left', mode: 'show', distance: '100%'}, 1000, function () {
+                block = false;
+            });
+        };
+
+        var slideUp = function() {
+            block = true;
+            $(current.data).find("section").slideUp(400, function () {
+                block = false;
+            });
+        };
+
+        var slideDown = function() {
+            block = true;
+            $(current.data).find("section").slideDown(400, function () {
+                block = false;
+            });
         };
 
         window.addEventListener('keyup', listener, false);
@@ -82,8 +108,7 @@ $(document).ready(function () {
     /* is triggered once the page was loaded */
     if ($(window).width() <= 759) {
         small();
-    }
-    else if ($(window).width() > 759) {
+    } else if ($(window).width() > 759) {
         big();
     }
 });
