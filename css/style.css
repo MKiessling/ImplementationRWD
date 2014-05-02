@@ -43,7 +43,6 @@ p {
     margin: 0 0 10px;
     line-height: 1.4em;
     font-size: 1.2em;
-    text-align: justify;
 }
 
 img {
@@ -77,13 +76,16 @@ article {
 }
 
 article img {
-    position: relative;
     width: 100%;
 }
 
 aside {
     width: 35%;
     float: right;
+    text-align: justify;
+}
+
+h3.subheading {
     text-align: justify;
 }
 
