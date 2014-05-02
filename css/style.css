@@ -1,15 +1,60 @@
 /* Reset
 ------------------------------------------------------------ */
-* { margin: 0; padding: 0; }
-html { overflow-y: scroll;}
-body { background:#ffffff; font-size: 13px; color: #666666; font-family: Arial, helvetica, sans-serif;}
-ol, ul { list-style: none; margin: 0;}
-ul li { margin: 0; padding: 0;}
-h1 { margin-bottom: 10px; color: #111111;}
-a, img { outline: none; border:none; color: #000; font-weight: bold; text-transform: uppercase;}
-p { margin: 0 0 10px; line-height: 1.4em; font-size: 1.2em;}
-img { display: block; margin-bottom: 10px;}
-aside { font-style: italic; font-size: 0.9em;}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #ffffff;
+    font-size: 13px;
+    color: #666666;
+    font-family: Arial, helvetica, sans-serif;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+}
+
+ul li {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #111111;
+}
+
+a, img {
+    outline: none;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0 0 10px;
+    line-height: 1.4em;
+    font-size: 1.2em;
+}
+
+img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+aside {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
 article, aside, details, figcaption, figure,
 footer, header, menu, nav, section {
     display: block;
@@ -17,49 +62,112 @@ footer, header, menu, nav, section {
 
 /* Structure */
 #wrapper {
-    width: 96%;
-    max-width: 920px;
-    margin: auto;
-    padding: 2%;
-}
-
-article {
-    width: 60%;
-    margin-right: 5%;
-    float: left;
-    text-align: justify;
-    position: absolute;
-}
-
-article img{
     width: 100%;
 }
 
-aside {
-    width: 35%;
-    float: right;
+header {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.content {
+    max-width: 920px;
+    clear: both;
+    margin: 0 auto 10px;
+    padding: 5px;
+}
+
+article {
+    width: 100%;
+    padding: 2px;
+    float: left;
+    position: relative;
     text-align: justify;
 }
 
-h3.subheading {
-    text-align: justify;
+article div.heading {
+    text-align: left;
+    font-size: 2em;
+    line-height: 1em;
+    height: 2.5em;
+    overflow: hidden;
+}
+
+article img {
+    width: 100%;
+}
+
+article div.intro.text {
+    line-height: 1.2em;
+}
+
+article div.intro.more {
+    display: none;
+}
+
+article div.maintext {
+    line-height: 1.2em;
 }
 
 
+footer {
+
+    padding: 2em 0 2em 0;
+    bottom: 0;
+    clear: both;
+    background: #d41c1b;
+    color: #fff;
+
+}
 
 /* Media Queries */
 @media screen and (max-width: 759px) {
 
-    article, aside {
-        float: left;
-        clear: left;
-        margin: 0 0 10px;
-        width: 100%;
+    article {
+        width: 98%;
+        position: absolute;
     }
 
-    aside {
-        float: none;
-        width: 100%;
+    .content {
+        height: 300px;
     }
 
+    article div{
+        line-height: 1.2em;
+    }
+
+    article div.heading:not(.sum) {
+        text-align: left;
+        font-size: 2em;
+        min-height: 2.1em;
+        height: 100%;
+    }
+
+    article div.heading.sum {
+        text-align: left;
+        font-size: 2em;
+        height: 2.1em;
+        overflow: hidden;
+    }
+
+    article div.intro {
+        font-size: 1.1em;
+    }
+
+    article div.intro.text:not(.sum) {
+
+    }
+
+    article div.intro.text.sum {
+        height: 2.1em;
+        overflow: hidden;
+    }
+
+    article div.intro.more {
+        display: block;
+    }
+
+    article div.maintext {
+        font-size: 1.15em;
+    }
 }
