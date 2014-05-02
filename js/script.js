@@ -113,9 +113,9 @@ $(document).ready(function () {
         $.each(articles, function (index, value) {
             $(articles[index]).swipe({
                 swipe: function (event, direction, distance, duration, fingerCount) {
-                    if (direction == "left") {
+                    if (direction == "left" && block === false) {
                         slideRight();
-                    } else if (direction == "right") {
+                    } else if (direction == "right" && block === false) {
                         slideLeft();
                     }
                 },
