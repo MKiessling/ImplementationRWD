@@ -183,7 +183,11 @@ footer .devs {
         font-size: 1.1em;
     }
 
-    article div.intro.text {
+    article div.intro.text:not(.sum) {
+
+    }
+
+    article div.intro.text.sum {
         height: 2.1em;
         overflow: hidden;
     }
