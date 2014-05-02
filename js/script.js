@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     var articles = $("article");
     var isSmall, isBig = false;
+    var listener = null;
 
+    /* attach EventListener to window to monitor changes in width */
     window.addEventListener('resize', function () {
         if ($(window).width() <= 759 && isBig) {
             small();
@@ -12,16 +14,19 @@ $(document).ready(function () {
         }
     }, true);
 
+    /* triggers if window is big enough for non-mobile version */
     var big = function () {
         isBig = true;
         isSmall = false;
         $.each(articles, function (index, value) {
             $(articles[index]).show();
         });
-        window.removeEventListener('keyup', arguments.callee, false);
+
+        window.removeEventListener('keyup', listener, false);
 
     }
 
+    /* triggers if window is small enough for mobile version */
     var small = function () {
         isSmall = true;
         isBig = false;
@@ -32,8 +37,10 @@ $(document).ready(function () {
         });
         var current = linkedList.head();
         $(current.data).show();
-        window.addEventListener('keyup', function (e) {
-            if (e.keyCode === 39) {
+
+        listener = function (keyEvent) {
+            /* Right-Arrow */
+            if (keyEvent.keyCode === 39) {
                 $(current.data).hide();
                 if (current.next == null) {
                     current = linkedList.head();
@@ -44,7 +51,8 @@ $(document).ready(function () {
                 $(current.data).show();
                 ;
             }
-            if (e.keyCode === 37) {
+            /* Left-Arrow */
+            if (keyEvent.keyCode === 37) {
                 $(current.data).hide();
                 if (current.prev == null) {
                     current = linkedList.tail();
@@ -53,9 +61,12 @@ $(document).ready(function () {
                 }
                 $(current.data).show();
             }
-        }, false);
+        };
+
+        window.addEventListener('keyup', listener, false);
     }
 
+    /* is triggered once the page was loaded */
     if ($(window).width() <= 759) {
         small();
     }
