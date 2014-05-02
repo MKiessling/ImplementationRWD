@@ -4,6 +4,7 @@ $(document).ready(function () {
     var isSmall, isBig = false;
     var listener = null;
     var block = false;
+    var expand = false;
     var nav = responsiveNav(".nav-collapse");
 
     /* attach EventListener to window to monitor changes in width */
@@ -22,13 +23,12 @@ $(document).ready(function () {
         isSmall = false;
         $.each(articles, function (index, value) {
             $(articles[index]).show();
-            $(articles[index]).find("section").show();
+            $(articles[index]).find("div.maintext").show();
             $(articles[index]).swipe("destroy");
         });
 
         window.removeEventListener('keyup', listener, false);
-
-    }
+    };
 
     /* triggers if window is small enough for mobile version */
     var small = function () {
@@ -38,14 +38,14 @@ $(document).ready(function () {
         $.each(articles, function (index, value) {
             linkedList.append(articles[index]);
             $(articles[index]).hide();
-            $(articles[index]).find("section").hide();
+            $(articles[index]).find("div.maintext").hide();
         });
         var current = linkedList.head();
         $(current.data).show();
 
         var slideRight = function () {
             block = true;
-            $(current.data).find("section").hide();
+            $(current.data).find("div.maintext").hide();
             $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
             if (current.next == null) {
                 current = linkedList.head();
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
         var slideLeft = function () {
             block = true;
-            $(current.data).find("section").hide();
+            $(current.data).find("div.maintext").hide();
             $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
             if (current.prev == null) {
                 current = linkedList.tail();
@@ -74,14 +74,23 @@ $(document).ready(function () {
 
         var slideUp = function () {
             block = true;
-            $(current.data).find("section").slideUp(400, function () {
+            expand = false;
+
+            $(current.data).find("div.maintext").slideUp(400, function () {
                 block = false;
+                $(current.data).find("div.intro").find("div").addClass("text");
+                $(current.data).find("div.intro.more").css("display", "block");
             });
         };
 
         var slideDown = function () {
             block = true;
-            $(current.data).find("section").slideDown(400, function () {
+            expand = true;
+
+            $(current.data).find("div.intro.text").removeClass("text");
+            $(current.data).find("div.intro.more").css("display", "none");
+
+            $(current.data).find("div.maintext").slideDown(400, function () {
                 block = false;
             });
         };
@@ -96,7 +105,11 @@ $(document).ready(function () {
                     }
                 },
                 tap: function (event, target) {
-                    slideDown();
+                    if (!expand) {
+                        slideDown();
+                    } else {
+                        slideUp();
+                    }
                 }, allowPageScroll: "vertical"
             });
         });

@@ -71,9 +71,18 @@ header {
     padding-bottom: 10px;
 }
 
+.pagetitle {
+    display: none;
+}
+
+.topline{
+    font-size: 3em;
+}
+
 .content {
     max-width: 920px;
     clear: both;
+    position: relative;
     margin: 0 auto 10px;
     padding: 5px;
 }
@@ -86,16 +95,32 @@ article {
     text-align: justify;
 }
 
-article h1 {
-    display: inline;
+article div.heading {
+    font-size: 2em;
+    line-height: 1em;
+    height: 1.2em;
+    overflow: hidden;
 }
 
 article img {
-    width: 100%;
+    width: 99.99999%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
 }
 
-h3.subheading {
-    text-align: justify;
+article div.intro.text {
+    line-height: 1.2em;
+}
+
+article div.intro.more {
+    display: none;
+}
+
+article div.maintext {
+    line-height: 1.2em;
+    font-size: 1.2em;
+    margin-bottom: 15px;
 }
 
 footer {
@@ -117,5 +142,46 @@ footer {
 
     .content {
         height: 300px;
+    }
+
+    .topline{
+        font-size: 2.2em;
+    }
+
+    article div {
+        line-height: 1.2em;
+    }
+
+    article div.heading {
+        font-size: 2em;
+        height: 2.1em;
+        overflow: hidden;
+    }
+
+    article div.intro {
+        font-size: 1.1em;
+    }
+
+    article div.intro.text {
+        height: 2.1em;
+        overflow: hidden;
+    }
+
+    article div.intro.more {
+        display: block;
+    }
+
+    article div.maintext {
+        font-size: 1.2em;
+        margin-bottom: auto;
+    }
+
+    .pagetitle {
+        display: block;
+        font-size: 2.5em;
+        font-style: oblique;
+        position: absolute;
+        padding-top: 10px;
+        padding-left: 5px;
     }
 }
