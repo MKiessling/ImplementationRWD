@@ -27,6 +27,7 @@ article {
     width: 60%;
     margin-right: 5%;
     float: left;
+    text-align: justify;
 }
 
 article img{
@@ -36,6 +37,11 @@ article img{
 aside {
     width: 35%;
     float: right;
+    text-align: justify;
+}
+
+h3.subheading {
+    text-align: justify;
 }
 
 
@@ -47,6 +53,11 @@ aside {
         float: left;
         clear: left;
         margin: 0 0 10px;
+        width: 100%;
+    }
+
+    aside {
+        float: none;
         width: 100%;
     }
 
