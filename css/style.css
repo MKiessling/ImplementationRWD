@@ -1,5 +1,6 @@
 /* Reset
 ------------------------------------------------------------ */
+<<<<<<< HEAD
 * { margin: 0; padding: 0; }
 html { overflow-y: scroll;}
 body { background:#ffffff; font-size: 13px; color: #666666; font-family: Arial, helvetica, sans-serif;}
@@ -30,16 +31,107 @@ article {
 }
 
 article img{
+=======
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #ffffff;
+    font-size: 13px;
+    color: #666666;
+    font-family: Arial, helvetica, sans-serif;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+}
+
+ul li {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #111111;
+}
+
+a, img {
+    outline: none;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0 0 10px;
+    line-height: 1.4em;
+    font-size: 1.2em;
+}
+
+img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+aside {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+    display: block;
+}
+
+/* Structure */
+#wrapper {
+    width: 96%;
+    max-width: 920px;
+    margin: auto;
+    padding: 2%;
+}
+
+article {
+    width: 60%;
+    margin-right: 5%;
+    float: left;
+    position: relative;
+    text-align: justify;
+}
+
+article img {
+>>>>>>> e5542a072b4f08559a983944b2f164aa77935137
     width: 100%;
 }
 
 aside {
     width: 35%;
     float: right;
+<<<<<<< HEAD
 }
 
+=======
+    text-align: justify;
+}
 
+h3.subheading {
+    text-align: justify;
+}
+>>>>>>> e5542a072b4f08559a983944b2f164aa77935137
 
+/* Media Queries */
+@media screen and (max-width: 759px) {
+
+<<<<<<< HEAD
 /* Media Queries */
 @media screen and (max-width: 759px) {
 
@@ -47,6 +139,17 @@ aside {
         float: left;
         clear: left;
         margin: 0 0 10px;
+=======
+    article, aside {
+        float: left;
+        clear: left;
+        margin: 0 0 10px;
+        width: 100%;
+    }
+
+    aside {
+        float: none;
+>>>>>>> e5542a072b4f08559a983944b2f164aa77935137
         width: 100%;
     }
 
