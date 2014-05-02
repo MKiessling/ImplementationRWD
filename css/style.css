@@ -63,7 +63,6 @@ footer, header, menu, nav, section {
 /* Structure */
 #wrapper {
     width: 100%;
-    position: relative;
 }
 
 header {
@@ -75,7 +74,7 @@ header {
     display: none;
 }
 
-.topline{
+.topline {
     font-size: 3em;
 }
 
@@ -96,6 +95,7 @@ article {
 }
 
 article div.heading {
+    text-align: left;
     font-size: 2em;
     line-height: 1em;
     height: 1.2em;
@@ -132,19 +132,32 @@ footer {
     color: #fff;
 }
 
+footer .devs {
+    font-size: 1.2em;
+    text-align: center;
+}
+
 /* Media Queries */
 @media screen and (max-width: 759px) {
 
     article {
         width: 98%;
         position: fixed;
+        margin-bottom: 4em;
     }
 
     .content {
         height: 300px;
     }
 
-    .topline{
+    footer {
+        display: none;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .topline {
         font-size: 2.2em;
     }
 
@@ -152,7 +165,15 @@ footer {
         line-height: 1.2em;
     }
 
-    article div.heading {
+    article div.heading:not(.sum) {
+        text-align: left;
+        font-size: 2em;
+        min-height: 2.1em;
+        height: 100%;
+    }
+
+    article div.heading.sum {
+        text-align: left;
         font-size: 2em;
         height: 2.1em;
         overflow: hidden;

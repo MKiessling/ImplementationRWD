@@ -43,10 +43,17 @@ $(document).ready(function () {
         var current = linkedList.head();
         $(current.data).show();
 
+
         var slideRight = function () {
             block = true;
-            $(current.data).find("div.maintext").hide();
-            $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
+
+            $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000, function () {
+                $(this).find("div.maintext").hide();
+                $(this).find("div.heading").addClass("sum");
+                $(this).find("div.intro.text").addClass("sum");
+                $(this).find("div.intro.more").css("display", "block");
+            });
+
             if (current.next == null) {
                 current = linkedList.head();
             } else {
@@ -60,8 +67,14 @@ $(document).ready(function () {
 
         var slideLeft = function () {
             block = true;
-            $(current.data).find("div.maintext").hide();
-            $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
+
+            $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000, function () {
+                $(this).find("div.maintext").hide();
+                $(this).find("div.heading").addClass("sum");
+                $(this).find("div.intro.text").addClass("sum");
+                $(this).find("div.intro.more").css("display", "block");
+            });
+
             if (current.prev == null) {
                 current = linkedList.tail();
             } else {
@@ -78,7 +91,8 @@ $(document).ready(function () {
 
             $(current.data).find("div.maintext").slideUp(400, function () {
                 block = false;
-                $(current.data).find("div.intro").find("div").addClass("text");
+                $(current.data).find("div.heading").addClass("sum");
+                $(current.data).find("div.intro.text").addClass("sum");
                 $(current.data).find("div.intro.more").css("display", "block");
             });
         };
@@ -87,7 +101,8 @@ $(document).ready(function () {
             block = true;
             expand = true;
 
-            $(current.data).find("div.intro.text").removeClass("text");
+            $(current.data).find("div.heading.sum").removeClass("sum");
+            $(current.data).find("div.intro.text.sum").removeClass("sum");
             $(current.data).find("div.intro.more").css("display", "none");
 
             $(current.data).find("div.maintext").slideDown(400, function () {
