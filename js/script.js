@@ -4,6 +4,7 @@ $(document).ready(function () {
     var isSmall, isBig = false;
     var listener = null;
     var block = false;
+    var nav = responsiveNav(".nav-collapse");
 
     /* attach EventListener to window to monitor changes in width */
     window.addEventListener('resize', function () {
