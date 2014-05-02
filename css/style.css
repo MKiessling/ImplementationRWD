@@ -72,6 +72,7 @@ article {
     width: 60%;
     margin-right: 5%;
     float: left;
+    position: relative;
     text-align: justify;
 }
 

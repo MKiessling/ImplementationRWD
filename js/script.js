@@ -3,6 +3,7 @@ $(document).ready(function () {
     var articles = $("article");
     var isSmall, isBig = false;
     var listener = null;
+    var block = false;
 
     /* attach EventListener to window to monitor changes in width */
     window.addEventListener('resize', function () {
@@ -20,6 +21,7 @@ $(document).ready(function () {
         isSmall = false;
         $.each(articles, function (index, value) {
             $(articles[index]).show();
+            $(articles[index]).swipe("destroy");
         });
 
         window.removeEventListener('keyup', listener, false);
@@ -39,40 +41,80 @@ $(document).ready(function () {
         var current = linkedList.head();
         $(current.data).show();
 
+        var slideRight = function () {
+            block = true;
+            $(current.data).find("section").hide();
+            $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
+            if (current.next == null) {
+                current = linkedList.head();
+            } else {
+                current = current.next;
+            }
+
+            $(current.data).effect('slide', {direction: 'right', mode: 'show', distance: '100%'}, 1000, function () {
+                block = false;
+            });
+        };
+
+        var slideLeft = function () {
+            block = true;
+            $(current.data).find("section").hide();
+            $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
+            if (current.prev == null) {
+                current = linkedList.tail();
+            } else {
+                current = current.prev;
+            }
+            $(current.data).effect('slide', {direction: 'left', mode: 'show', distance: '100%'}, 1000, function () {
+                block = false;
+            });
+        };
+
+        var slideUp = function () {
+            block = true;
+            $(current.data).find("section").slideUp(400, function () {
+                block = false;
+            });
+        };
+
+        var slideDown = function () {
+            block = true;
+            $(current.data).find("section").slideDown(400, function () {
+                block = false;
+            });
+        };
+
+        $.each(articles, function (index, value) {
+            $(articles[index]).swipe({
+                swipe: function (event, direction, distance, duration, fingerCount) {
+                    if (direction == "left") {
+                        slideRight();
+                    } else if (direction == "right") {
+                        slideLeft();
+                    }
+                },
+                tap: function (event, target) {
+                    slideDown();
+                }
+            });
+        });
+
         listener = function (keyEvent) {
             /* Right-Arrow */
-            if (keyEvent.keyCode === 39) {
-                $(current.data).find("section").hide();
-                $(current.data).effect('slide', {direction: 'left', mode: 'hide', distance: '100%'}, 1000);
-                if (current.next == null) {
-                    current = linkedList.head();
-                } else {
-                    current = current.next;
-                }
-
-                $(current.data).effect('slide', {direction: 'right', mode: 'show', distance: '100%'}, 1000);
-
+            if (keyEvent.keyCode === 39 && block === false) {
+                slideRight();
             }
             /* Left-Arrow */
-            if (keyEvent.keyCode === 37) {
-                $(current.data).find("section").hide();
-                $(current.data).effect('slide', {direction: 'right', mode: 'hide', distance: '100%'}, 1000);
-                if (current.prev == null) {
-                    current = linkedList.tail();
-                } else {
-                    current = current.prev;
-                }
-                $(current.data).effect('slide', {direction: 'left', mode: 'show', distance: '100%'}, 1000);
+            if (keyEvent.keyCode === 37 && block === false) {
+                slideLeft();
             }
-
             /* Up-Arrow */
-            if (keyEvent.which === 38) {
-                $(current.data).find("section").slideUp();
+            if (keyEvent.which === 38 && block === false) {
+                slideUp();
             }
-
             /* Down-Arrow */
-            if (keyEvent.which === 40) {
-                $(current.data).find("section").slideDown();
+            if (keyEvent.which === 40 && block === false) {
+                slideDown();
             }
         };
 
