@@ -97,7 +97,7 @@ $(document).ready(function () {
                 },
                 tap: function (event, target) {
                     slideDown();
-                }
+                }, allowPageScroll: "vertical"
             });
         });
 

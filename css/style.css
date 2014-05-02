@@ -63,6 +63,7 @@ footer, header, menu, nav, section {
 /* Structure */
 #wrapper {
     width: 100%;
+    position: relative;
 }
 
 header {
@@ -98,13 +99,12 @@ h3.subheading {
 }
 
 footer {
-
-    padding: 2em 0 2em 0;
-    bottom: 0;
     clear: both;
+    position: relative;
+    bottom: 0;
+    padding: 2em 0 2em 0;
     background: #d41c1b;
     color: #fff;
-
 }
 
 /* Media Queries */
@@ -112,7 +112,7 @@ footer {
 
     article {
         width: 98%;
-        position: absolute;
+        position: fixed;
     }
 
     .content {
