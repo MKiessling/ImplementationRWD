@@ -14,10 +14,6 @@ body {
     font-size: 13px;
     color: #666666;
     font-family: Arial, helvetica, sans-serif;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    background: #fff;
 }
 
 ol, ul {
@@ -66,10 +62,7 @@ footer, header, menu, nav, section {
 
 /* Structure */
 #wrapper {
-    width: 96%;
-    max-width: 920px;
-    margin: auto;
-    padding: 2%;
+    width: 100%;
 }
 
 header {
@@ -78,15 +71,22 @@ header {
 }
 
 .content {
-    position: relative;
-    width: 60%;
-    margin-right: 5%;
+    max-width: 920px;
+    clear: both;
+    margin: 0 auto 10px;
+    padding: 5px;
 }
 
 article {
+    width: 100%;
+    padding: 2px;
     float: left;
     position: relative;
     text-align: justify;
+}
+
+article h1 {
+    display: inline;
 }
 
 article img {
@@ -98,30 +98,24 @@ h3.subheading {
 }
 
 footer {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding: 3em 0 3em 0;
+
+    padding: 2em 0 2em 0;
+    bottom: 0;
+    clear: both;
     background: #d41c1b;
     color: #fff;
-}
 
-.sidebar {
-    width: 35%;
-    float: right;
-}
-
-.sidebar p {
-    text-align: justify;
 }
 
 /* Media Queries */
 @media screen and (max-width: 759px) {
 
-    article, .sidebar {
-        float: left;
-        clear: left;
-        margin: 0 0 10px;
-        width: 100%;
+    article {
+        width: 98%;
+        position: absolute;
+    }
+
+    .content {
+        height: 300px;
     }
 }

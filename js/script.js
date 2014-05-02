@@ -22,6 +22,7 @@ $(document).ready(function () {
         isSmall = false;
         $.each(articles, function (index, value) {
             $(articles[index]).show();
+            $(articles[index]).find("section").show();
             $(articles[index]).swipe("destroy");
         });
 
